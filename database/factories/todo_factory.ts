@@ -6,7 +6,7 @@ export const TodoFactory = factory
     return {
       title: faker.lorem.sentence(),
       description: faker.lorem.sentence(),
-      isCompleted: 0,
+      isCompleted: false,
     }
   })
   .build()
