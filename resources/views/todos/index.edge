@@ -8,14 +8,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-    <section class="max-w-6xl m-auto">
-        <h1 class="text-4xl font-bold mt-8">Todo App</h1>
+    <section class="max-w-6xl mx-auto my-8">
+        <h1 class="text-4xl font-bold">Todo App</h1>
         @each(todo in todos)
             <div class="bg-white shadow-md rounded-md p-4 mt-4">
                 <h2 class="text-xl font-bold">{{ todo.title }}</h2>
                 <p class="text-gray-600">{{ todo.description }}</p>
+                <div class="flex flex-row gap-4">
+                    <form action="/todos/{{ todo.id }}" method="GET">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Show</button>
+                    </form>
+                    <form action="/todos/{{ todo.id }}/edit" method="GET">
+                        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4">Edit</button>
+                    </form>
+                </div>
             </div>
         @endeach
+        <div class="mt-8">
+            <a href="/todos/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded mt-4">Create Todo</a>
+        </div>
     </section>
 </body>
 </html>
