@@ -17,31 +17,7 @@ export default class TodosController {
     return view.render('todos/edit', { todo })
   }
 
-  async update({ params, request, response }: HttpContext) {
-    const todo = await Todo.find(params.id)
-    if (todo) {
-      todo.title = request.input('title')
-      todo.description = request.input('description')
-      await todo.save()
-    }
-    return response.redirect().toRoute('todos.index')
-  }
-
   async create({ view }: HttpContext) {
     return view.render('todos/create')
-  }
-
-  async store({ request, response }: HttpContext) {
-    const todo = new Todo()
-    todo.title = request.input('title')
-    todo.description = request.input('description')
-    await todo.save()
-    return response.redirect().toRoute('todos.index')
-  }
-
-  async destroy({ params, response }: HttpContext) {
-    const todo = await Todo.find(params.id)
-    await todo?.delete()
-    return response.redirect().toRoute('todos.index')
   }
 }
